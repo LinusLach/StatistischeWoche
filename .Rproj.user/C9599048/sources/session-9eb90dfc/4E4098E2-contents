@@ -1,0 +1,35 @@
+/*-- scss:defaults --*/
+
+// headings
+$presentation-heading-text-transform: none;
+
+
+// text
+
+.center {
+    text-align: center;
+  }
+  
+// fonts
+
+// logo
+
+.reveal .slide-logo {
+  max-height: 5% !important;
+}
+
+// TOC
+
+#TOC{
+  position: absolute;
+  padding-top: 40vh;
+}
+
+
+// LOGO
+
+.slide-logo{
+  max-height: 7.5%; 
+}
+
+

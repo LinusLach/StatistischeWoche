@@ -1,0 +1,123 @@
+---
+title: "Bridging the Gap Between $f$-GANs and Bayes Hilbert Spaces"
+subtitle: " Linus Lach*, Alexander Fottner, Yarema Okhrin"
+format:
+  revealjs:
+    theme: [solarized, custom.scss]
+    toc: true
+    toc-title: "Content"
+    toc-depth: 1
+    progress: true
+    fig-cap-location: top
+    include-in-header: 
+      text: |
+        <style>
+        .center-xy {
+          margin: 0;
+          position: absolute;
+          margin-top: 50vh;
+        }
+        </style>
+    logo: pictures/Logos.svg
+    bibliography: references.bib
+---
+
+
+# $f$-GANs
+
+::: {style="display:none;"}
+(
+
+\def\bE{{\mathbb{E}}}
+
+\def\bR{{\mathbb{R}}}
+
+\def\cB{{\mathcal{B}}}
+
+\def\rmd{{\mathrm{d}}}
+
+\def\cT{{\mathcal{T}}}
+
+)
+:::
+
+
+## $f$-Divergences [@csiszar2004information]
+
+:::{style="font-size:24pt;"}
+
+Quantify dissimilarity between two probability measures $\mu$ and $\nu$ that are absolutely continuous w.r.t to some $\sigma$-finite base measure $\lambda$.^[ $\mu$ is absolutely continuous w.r.t. $\lambda$ if every $\mu$ nullset is a $\lambda$ nullset and vice versa]
+
+$$
+  D_{f}(\mu,\nu) = \int_{\mathbb{R}}p_\nu(x)f\left(\frac{p_\mu(x)}{p_\nu(x)}\right)\lambda(\mathrm{d}x).
+$$
+
+-   $f:{\mathbb{R}}_+\to{\mathbb{R}}$ convex,
+
+-   lower-semicontinuous, and
+
+-   satisfying $f(1) = 0$.
+
+:::
+
+:::{style="text-align:center;"}
+
+$f$ is called **divergence generating function**
+
+:::
+
+## Examples of $f$- divergences
+
+![](pictures/f_divergences_tpbg.svg)
+
+## Estimating $f$-divergences is hard!
+
+-   Nonparametric estimation 
+
+-   Only finite samples available
+
+-   Highdimensional setting
+
+**Solution:**
+Find easy to estimate lower bound [@nguyen2010estimating]:
+
+\begin{equation}
+  D_f(\mu,\nu) \geq \sup_{T\in\cT}\bigg\{\bE_\mu(T)- \bE_\nu(f^*\circ T)\bigg\}
+\end{equation}
+
+## Components of the lower bound
+
+\begin{equation}
+  D_f(\mu,\nu) \geq \sup_{T\in\cT}\bigg\{\bE_\mu(T)- \bE_\nu(f^*\circ T)\bigg\}
+\end{equation}
+
+- $\cT$ arbitrary class of well behaving functions $T:\Omega \to \mathrm{dom}(f^*)$
+
+- Fenchel conjugate $f^*$ of $f$: $f^*(y):= \sup_{x\in\mathrm{dom}(f)} \{xy - f(x)\}$
+
+
+## Generative Adversarial Networks (GANs)
+
+- Sample from an unknown distribution
+
+- Alternately:
+  - Train a generative model that creates samples from an unknown distribution
+  
+  - Train a discriminatory model (binary classifier) that incentives the generator to produce more realistic examples
+
+## Training Objective and Optimum
+
+@goodfellow2014generative presented stated the optimization problem
+
+\begin{equation}
+
+\min_G \max_D \bigg[ \mathbb{E}_{\nu}(\log(D(x))) - \mathbb{E}_\mu (\log(1-D(G(x)))) \bigg]
+
+\end{equation}
+
+$G$ and $D$ are usually each parameterized by a neural network.
+
+
+# Bayes Hilbert Spaces
+
+# Bridging the Gap
