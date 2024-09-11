@@ -25,6 +25,8 @@ format:
 
 # $f$-GANs
 
+
+
 ::: {style="display:none;"}
 (
 
@@ -37,6 +39,8 @@ format:
 \def\rmd{{\mathrm{d}}}
 
 \def\cT{{\mathcal{T}}}
+
+\def\rmd{{\mathrm{d}}}
 
 )
 :::
@@ -66,9 +70,9 @@ $f$ is called **divergence generating function**
 
 :::
 
-## Examples of $f$- divergences
+## Examples of $f$-divergences generating functions
 
-![](pictures/f_divergences_tpbg.svg)
+![](pictures/f_divergences.svg)
 
 ## Estimating $f$-divergences is hard!
 
@@ -91,12 +95,54 @@ Find easy to estimate lower bound [@nguyen2010estimating]:
   D_f(\mu,\nu) \geq \sup_{T\in\cT}\bigg\{\bE_\mu(T)- \bE_\nu(f^*\circ T)\bigg\}
 \end{equation}
 
-- $\cT$ arbitrary class of well behaving functions $T:\Omega \to \mathrm{dom}(f^*)$
+- $\cT$ arbitrary class of measurable functions $T:\Omega \to \mathrm{dom}(f^*)$
 
 - Fenchel conjugate $f^*$ of $f$: $f^*(y):= \sup_{x\in\mathrm{dom}(f)} \{xy - f(x)\}$
 
+## Fenchel conjugates
 
-## Generative Adversarial Networks (GANs)
+::::{style="font-size:21pt;"}
+
+:::{.callout-note title="Theorem (@textbook)" icon="false"}
+
+:::{style="font-size:21pt;"}
+
+Let $f:\bR^n\to\bR$ be a convex function. If $f$ is lower semi-continuous, then the duality $f^{**}(x) = f(x)$ for all $x\in \bR^n$ holds.
+    
+:::
+
+:::
+
+This theorem also works for concave functions:
+
+:::{.callout-note title="Theorem (@textbook)" icon="false"}
+
+:::{style="font-size:21pt;"}
+
+Let $f:\bR^n\to\bR$ be a concave function. If $f$ is upper semi-continuous, then the duality $f_{**}(x) = f(x)$ for all $x\in \bR^n$ holds.
+
+:::
+ 
+:::
+
+Here, 
+\begin{equation}
+f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
+\end{equation}
+
+::::
+
+## Optimizing the lower bound 
+
+If $f$ is not only convex and lower semicontinuous but $f \in \mathcal{C}^1$, then the bound is tight and the supremum is attained at
+
+\begin{equation}
+  \tilde{T} (x) = f^\prime\left(\frac{p_\mu(x)}{p_\nu(x)}\right).
+\end{equation}
+
+
+
+## Generative Adversarial Networks (GANs) in a nutshell
 
 - Sample from an unknown distribution
 
@@ -105,19 +151,115 @@ Find easy to estimate lower bound [@nguyen2010estimating]:
   
   - Train a discriminatory model (binary classifier) that incentives the generator to produce more realistic examples
 
-## Training Objective and Optimum
+## Training objective for $f$-GANs
 
-@goodfellow2014generative presented stated the optimization problem
+@nowozin2016f extended the work of @goodfellow2014generative to a generalized optimization problem: 
 
 \begin{equation}
 
-\min_G \max_D \bigg[ \mathbb{E}_{\nu}(\log(D(x))) - \mathbb{E}_\mu (\log(1-D(G(x)))) \bigg]
+\min_{\theta} \max_{\omega} \bigg[ \mathbb{E}_{\mu}(T_\omega) - \mathbb{E}_{\nu_{\theta}} (f^*\circ T_\omega) \bigg]
 
 \end{equation}
 
-$G$ and $D$ are usually each parameterized by a neural network.
+$\theta$ (generator) and $\omega$ (discriminator) are each parameters of neural networks.
 
 
 # Bayes Hilbert Spaces
 
+## General idea
+
+1.    Construct a linear space for proportional $\sigma$-finite measures, including probability measures.
+
+2.    Consider the subspace of square-log-integrable densities.^[In this setting, measures can be identified with their corresponding Radon-Nikodym density.]
+
+3.    Define an inner product on this subspace using the centered log ratio for measures.
+
+4.    Obtain a Hilbert space structure that allows for a straight forward interpretation of distances between densities.
+
+## Some definitions
+
+
+-   Define $\mathcal{M}(\lambda)$ as the set of measures on $(\Omega, \mathcal{B})$ that are equivalent to the base measure $\lambda$. 
+
+-   Two measures $\mu,\nu \in \mathcal{M}(\lambda)$ are defined as $B$-equivalent denoted by $\mu =_{B(\lambda)} \nu$ if there exists a constant $c>0$ such that $\mu(A)=c\nu(A)$ for all $A\in \mathcal{B}$. Then, $=_{B(\lambda)}$ is an equivalence relation on $\mathcal{M}(\lambda)$
+
+- Finally, define $B(\lambda) :=\mathcal{M}(\lambda)/=_{B(\lambda)}$ 
+
+## Bayes Linear Space
+
+::::{style="font-size:24pt;"}
+
+For two measures $\mu,\nu\in B(\lambda)$ define the perturbation of $\mu$ by $\nu$ over some set $R\in\mathcal{B}$ as
+
+\begin{equation}
+  (\mu \oplus \nu)(R) := \int_R\frac{\rmd\mu}{\rmd\lambda}\frac{\rmd \nu}{\rmd \lambda}\: \rmd \lambda
+\end{equation}
+
+and the powering of $\mu$ by $\alpha\in\mathbb{R}$ as
+
+\begin{equation}
+  (\alpha \odot \mu)(R) := \int_R\left(\frac{\rmd \mu}{\rmd \lambda}\right)^\alpha \rmd \lambda
+\end{equation}
+
+:::{.callout-note title="Theorem (@boogaart2010bayes)" icon="false"}
+
+:::{style="font-size:24pt;"}
+
+$(B(\lambda),\oplus,\odot)$ is a linear space.
+
+:::
+:::
+
+::::
+
+
+## The centered log ratio
+
+For $p\geq 1$ define
+
+$$
+  B^p(\lambda) = \left\{\mu\in B(\lambda): \int_{\mathbb{R}}\left|\log\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right) \right|^p{\mathrm{d}}\lambda <+\infty\right\}.
+$$
+
+The $\mathrm{clr}$ of $\mu\in B^1(p)$ is defined as
+
+$$
+\mathrm{clr}(\mu) = \log\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right) - \int \log\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right)\: {\mathrm{d}}\lambda.
+$$
+
+
+## Bayes Hilbert spaces
+
+:::{.callout-note title="Theorem (@van2014bayes)" icon="false"}
+
+$B^2(\lambda)$ equipped with the inner product 
+
+:::{style="font-size:20pt;"}
+
+\begin{equation}
+   \int \left(\log(f(x))-\int\log(f(y))\lambda(\rmd y)\right)
+      \left(\log(g(x))-\int\log(g(y))\lambda(\rmd y)\right)
+      \lambda(\rmd y)
+\end{equation}
+
+:::
+
+denoted by $\langle f,g\rangle_{B^2(\lambda)}$ with $f,g$ densities in $B^2(\lambda)$ is a separable Hilbert space.
+
+:::
+
+:::{.callout-note title="Theorem (@van2014bayes)" icon="false"}
+
+:::{style="font-size:20pt;"}
+
+$\mathrm{clr}:B^2(\lambda)\to L_0^2(\lambda)$ is an isometry of Hilbert spaces.
+
+:::
+
+:::
+
+
 # Bridging the Gap
+
+
+# Referenceenars

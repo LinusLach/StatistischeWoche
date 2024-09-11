@@ -12,24 +12,28 @@ $presentation-heading-text-transform: none;
   
 // fonts
 
-// logo
-
-.reveal .slide-logo {
-  max-height: 5% !important;
-}
 
 // TOC
-
 #TOC{
   position: absolute;
-  padding-top: 40vh;
+  margin-top: 25%;
 }
-
+ 
+.slide-background-content{
+}
 
 // LOGO
 
-.slide-logo{
-  max-height: 7.5%; 
+/*-- scss:rules --*/
+
+.reveal .slide-logo {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 12px;
+  height: 10em !important;
+  width: auto;
+  z-index: 2;
 }
 
 

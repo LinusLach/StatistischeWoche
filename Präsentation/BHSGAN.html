@@ -8,7 +8,7 @@
 <link href="BHSGAN_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="BHSGAN_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="BHSGAN_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.450">
+  <meta name="generator" content="quarto-1.4.555">
 
   <title>Bridging the Gap Between f-GANs and Bayes Hilbert Spaces</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -32,6 +32,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -174,7 +175,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -363,6 +365,7 @@
 <li><a href="#/f-gans" id="/toc-f-gans"><span class="math inline">\(f\)</span>-GANs</a></li>
 <li><a href="#/bayes-hilbert-spaces" id="/toc-bayes-hilbert-spaces">Bayes Hilbert Spaces</a></li>
 <li><a href="#/bridging-the-gap" id="/toc-bridging-the-gap">Bridging the Gap</a></li>
+<li><a href="#/referenceenars" id="/toc-referenceenars">Referenceenars</a></li>
 </ul>
 </nav>
 </section>
@@ -375,7 +378,7 @@
 </div>
 </section>
 <section id="f-divergences-csiszar2004information" class="slide level2">
-<h2><span class="math inline">\(f\)</span>-Divergences <span class="citation" data-cites="csiszar2004information">(<a href="#/bridging-the-gap" role="doc-biblioref" onclick="">Csiszár, Shields, et al. 2004</a>)</span></h2>
+<h2><span class="math inline">\(f\)</span>-Divergences <span class="citation" data-cites="csiszar2004information">(<a href="#/referenceenars" role="doc-biblioref" onclick="">Csiszár, Shields, et al. 2004</a>)</span></h2>
 <div style="font-size:24pt;">
 <p>Quantify dissimilarity between two probability measures <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\nu\)</span> that are absolutely continuous w.r.t to some <span class="math inline">\(\sigma\)</span>-finite base measure <span class="math inline">\(\lambda\)</span>.<sup>1</sup></p>
 <p><span class="math display">\[
@@ -391,10 +394,10 @@
 <p><span class="math inline">\(f\)</span> is called <strong>divergence generating function</strong></p>
 </div>
 <aside><ol class="aside-footnotes"><li id="fn1"><p> <span class="math inline">\(\mu\)</span> is absolutely continuous w.r.t. <span class="math inline">\(\lambda\)</span> if every <span class="math inline">\(\mu\)</span> nullset is a <span class="math inline">\(\lambda\)</span> nullset and vice versa</p></li></ol></aside></section>
-<section id="examples-of-f--divergences" class="slide level2">
-<h2>Examples of <span class="math inline">\(f\)</span>- divergences</h2>
+<section id="examples-of-f-divergences-generating-functions" class="slide level2">
+<h2>Examples of <span class="math inline">\(f\)</span>-divergences generating functions</h2>
 
-<img data-src="pictures/f_divergences_tpbg.svg" class="r-stretch"></section>
+<img data-src="pictures/f_divergences.svg" class="r-stretch"></section>
 <section id="estimating-f-divergences-is-hard" class="slide level2">
 <h2>Estimating <span class="math inline">\(f\)</span>-divergences is hard!</h2>
 <ul>
@@ -402,7 +405,7 @@
 <li><p>Only finite samples available</p></li>
 <li><p>Highdimensional setting</p></li>
 </ul>
-<p><strong>Solution:</strong> Find easy to estimate lower bound <span class="citation" data-cites="nguyen2010estimating">(<a href="#/bridging-the-gap" role="doc-biblioref" onclick="">Nguyen, Wainwright, and Jordan 2010</a>)</span>:</p>
+<p><strong>Solution:</strong> Find easy to estimate lower bound <span class="citation" data-cites="nguyen2010estimating">(<a href="#/referenceenars" role="doc-biblioref" onclick="">Nguyen, Wainwright, and Jordan 2010</a>)</span>:</p>
 <p><span class="math display">\[\begin{equation}
   D_f(\mu,\nu) \geq \sup_{T\in{\mathcal{T}}}\bigg\{{\mathbb{E}}_\mu(T)- {\mathbb{E}}_\nu(f^*\circ T)\bigg\}
 \end{equation}\]</span></p>
@@ -413,12 +416,56 @@
   D_f(\mu,\nu) \geq \sup_{T\in{\mathcal{T}}}\bigg\{{\mathbb{E}}_\mu(T)- {\mathbb{E}}_\nu(f^*\circ T)\bigg\}
 \end{equation}\]</span></p>
 <ul>
-<li><p><span class="math inline">\({\mathcal{T}}\)</span> arbitrary class of well behaving functions <span class="math inline">\(T:\Omega \to \mathrm{dom}(f^*)\)</span></p></li>
+<li><p><span class="math inline">\({\mathcal{T}}\)</span> arbitrary class of measurable functions <span class="math inline">\(T:\Omega \to \mathrm{dom}(f^*)\)</span></p></li>
 <li><p>Fenchel conjugate <span class="math inline">\(f^*\)</span> of <span class="math inline">\(f\)</span>: <span class="math inline">\(f^*(y):= \sup_{x\in\mathrm{dom}(f)} \{xy - f(x)\}\)</span></p></li>
 </ul>
 </section>
-<section id="generative-adversarial-networks-gans" class="slide level2">
-<h2>Generative Adversarial Networks (GANs)</h2>
+<section id="fenchel-conjugates" class="slide level2">
+<h2>Fenchel conjugates</h2>
+<div style="font-size:21pt;">
+<div title="Theorem (@textbook)">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Theorem (<span class="citation" data-cites="textbook">Rockafellar (<a href="#/referenceenars" role="doc-biblioref" onclick="">1970</a>)</span>)</strong></p>
+</div>
+<div class="callout-content">
+<div style="font-size:21pt;">
+<p>Let <span class="math inline">\(f:{\mathbb{R}}^n\to{\mathbb{R}}\)</span> be a convex function. If <span class="math inline">\(f\)</span> is lower semi-continuous, then the duality <span class="math inline">\(f^{**}(x) = f(x)\)</span> for all <span class="math inline">\(x\in {\mathbb{R}}^n\)</span> holds.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>This theorem also works for concave functions:</p>
+<div title="Theorem (@textbook)">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Theorem (<span class="citation" data-cites="textbook">Rockafellar (<a href="#/referenceenars" role="doc-biblioref" onclick="">1970</a>)</span>)</strong></p>
+</div>
+<div class="callout-content">
+<div style="font-size:21pt;">
+<p>Let <span class="math inline">\(f:{\mathbb{R}}^n\to{\mathbb{R}}\)</span> be a concave function. If <span class="math inline">\(f\)</span> is upper semi-continuous, then the duality <span class="math inline">\(f_{**}(x) = f(x)\)</span> for all <span class="math inline">\(x\in {\mathbb{R}}^n\)</span> holds.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Here, <span class="math display">\[\begin{equation}
+f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
+\end{equation}\]</span></p>
+</div>
+</section>
+<section id="optimizing-the-lower-bound" class="slide level2">
+<h2>Optimizing the lower bound</h2>
+<p>If <span class="math inline">\(f\)</span> is not only convex and lower semicontinuous but <span class="math inline">\(f \in \mathcal{C}^1\)</span>, then the bound is tight and the supremum is attained at</p>
+<p><span class="math display">\[\begin{equation}
+  \tilde{T} (x) = f^\prime\left(\frac{p_\mu(x)}{p_\nu(x)}\right).
+\end{equation}\]</span></p>
+</section>
+<section id="generative-adversarial-networks-gans-in-a-nutshell" class="slide level2">
+<h2>Generative Adversarial Networks (GANs) in a nutshell</h2>
 <ul>
 <li><p>Sample from an unknown distribution</p></li>
 <li><p>Alternately:</p>
@@ -428,28 +475,127 @@
 </ul></li>
 </ul>
 </section>
-<section id="training-objective-and-optimum" class="slide level2">
-<h2>Training Objective and Optimum</h2>
-<p><span class="citation" data-cites="goodfellow2014generative">Goodfellow et al. (<a href="#/bridging-the-gap" role="doc-biblioref" onclick="">2014</a>)</span> presented stated the optimization problem</p>
+<section id="training-objective-for-f-gans" class="slide level2">
+<h2>Training objective for <span class="math inline">\(f\)</span>-GANs</h2>
+<p><span class="citation" data-cites="nowozin2016f">Nowozin, Cseke, and Tomioka (<a href="#/referenceenars" role="doc-biblioref" onclick="">2016</a>)</span> extended the work of <span class="citation" data-cites="goodfellow2014generative">Goodfellow et al. (<a href="#/referenceenars" role="doc-biblioref" onclick="">2014</a>)</span> to a generalized optimization problem:</p>
 <p><span class="math display">\[\begin{equation}
 
-\min_G \max_D \bigg[ \mathbb{E}_{\nu}(\log(D(x))) - \mathbb{E}_\mu (\log(1-D(G(x)))) \bigg]
+\min_{\theta} \max_{\omega} \bigg[ \mathbb{E}_{\mu}(T_\omega) - \mathbb{E}_{\nu_{\theta}} (f^*\circ T_\omega) \bigg]
 
 \end{equation}\]</span></p>
-<p><span class="math inline">\(G\)</span> and <span class="math inline">\(D\)</span> are usually each parameterized by a neural network.</p>
+<p><span class="math inline">\(\theta\)</span> (generator) and <span class="math inline">\(\omega\)</span> (discriminator) are each parameters of neural networks.</p>
 </section></section>
+<section>
 <section id="bayes-hilbert-spaces" class="title-slide slide level1 center">
 <h1>Bayes Hilbert Spaces</h1>
 
 </section>
-
-<section id="bridging-the-gap" class="title-slide slide level1 smaller scrollable">
+<section id="general-idea" class="slide level2">
+<h2>General idea</h2>
+<ol type="1">
+<li><p>Construct a linear space for proportional <span class="math inline">\(\sigma\)</span>-finite measures, including probability measures.</p></li>
+<li><p>Consider the subspace of square-log-integrable densities.<sup>1</sup></p></li>
+<li><p>Define an inner product on this subspace using the centered log ratio for measures.</p></li>
+<li><p>Obtain a Hilbert space structure that allows for a straight forward interpretation of distances between densities.</p></li>
+</ol>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>In this setting, measures can be identified with their corresponding Radon-Nikodym density.</p></li></ol></aside></section>
+<section id="some-definitions" class="slide level2">
+<h2>Some definitions</h2>
+<ul>
+<li><p>Define <span class="math inline">\(\mathcal{M}(\lambda)\)</span> as the set of measures on <span class="math inline">\((\Omega, \mathcal{B})\)</span> that are equivalent to the base measure <span class="math inline">\(\lambda\)</span>.</p></li>
+<li><p>Two measures <span class="math inline">\(\mu,\nu \in \mathcal{M}(\lambda)\)</span> are defined as <span class="math inline">\(B\)</span>-equivalent denoted by <span class="math inline">\(\mu =_{B(\lambda)} \nu\)</span> if there exists a constant <span class="math inline">\(c&gt;0\)</span> such that <span class="math inline">\(\mu(A)=c\nu(A)\)</span> for all <span class="math inline">\(A\in \mathcal{B}\)</span>. Then, <span class="math inline">\(=_{B(\lambda)}\)</span> is an equivalence relation on <span class="math inline">\(\mathcal{M}(\lambda)\)</span></p></li>
+<li><p>Finally, define <span class="math inline">\(B(\lambda) :=\mathcal{M}(\lambda)/=_{B(\lambda)}\)</span></p></li>
+</ul>
+</section>
+<section id="bayes-linear-space" class="slide level2">
+<h2>Bayes Linear Space</h2>
+<div style="font-size:24pt;">
+<p>For two measures <span class="math inline">\(\mu,\nu\in B(\lambda)\)</span> define the perturbation of <span class="math inline">\(\mu\)</span> by <span class="math inline">\(\nu\)</span> over some set <span class="math inline">\(R\in\mathcal{B}\)</span> as</p>
+<p><span class="math display">\[\begin{equation}
+  (\mu \oplus \nu)(R) := \int_R\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\frac{{\mathrm{d}}\nu}{{\mathrm{d}}\lambda}\: {\mathrm{d}}\lambda
+\end{equation}\]</span></p>
+<p>and the powering of <span class="math inline">\(\mu\)</span> by <span class="math inline">\(\alpha\in\mathbb{R}\)</span> as</p>
+<p><span class="math display">\[\begin{equation}
+  (\alpha \odot \mu)(R) := \int_R\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right)^\alpha {\mathrm{d}}\lambda
+\end{equation}\]</span></p>
+<div title="Theorem (@boogaart2010bayes)">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Theorem (<span class="citation" data-cites="boogaart2010bayes">K. Van den Boogaart, Egozcue, and Pawlowsky-Glahn (<a href="#/referenceenars" role="doc-biblioref" onclick="">2010</a>)</span>)</strong></p>
+</div>
+<div class="callout-content">
+<div style="font-size:24pt;">
+<p><span class="math inline">\((B(\lambda),\oplus,\odot)\)</span> is a linear space.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-centered-log-ratio" class="slide level2">
+<h2>The centered log ratio</h2>
+<p>For <span class="math inline">\(p\geq 1\)</span> define</p>
+<p><span class="math display">\[
+  B^p(\lambda) = \left\{\mu\in B(\lambda): \int_{\mathbb{R}}\left|\log\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right) \right|^p{\mathrm{d}}\lambda &lt;+\infty\right\}.
+\]</span></p>
+<p>The <span class="math inline">\(\mathrm{clr}\)</span> of <span class="math inline">\(\mu\in B^1(p)\)</span> is defined as</p>
+<p><span class="math display">\[
+\mathrm{clr}(\mu) = \log\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right) - \int \log\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right)\: {\mathrm{d}}\lambda.
+\]</span></p>
+</section>
+<section id="bayes-hilbert-spaces-1" class="slide level2">
+<h2>Bayes Hilbert spaces</h2>
+<div title="Theorem (@van2014bayes)">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Theorem (<span class="citation" data-cites="van2014bayes">K. G. Van den Boogaart, Egozcue, and Pawlowsky-Glahn (<a href="#/referenceenars" role="doc-biblioref" onclick="">2014</a>)</span>)</strong></p>
+</div>
+<div class="callout-content">
+<p><span class="math inline">\(B^2(\lambda)\)</span> equipped with the inner product</p>
+<div style="font-size:20pt;">
+<p><span class="math display">\[\begin{equation}
+   \int \left(\log(f(x))-\int\log(f(y))\lambda({\mathrm{d}}y)\right)
+      \left(\log(g(x))-\int\log(g(y))\lambda({\mathrm{d}}y)\right)
+      \lambda({\mathrm{d}}y)
+\end{equation}\]</span></p>
+</div>
+<p>denoted by <span class="math inline">\(\langle f,g\rangle_{B^2(\lambda)}\)</span> with <span class="math inline">\(f,g\)</span> densities in <span class="math inline">\(B^2(\lambda)\)</span> is a separable Hilbert space.</p>
+</div>
+</div>
+</div>
+</div>
+<div title="Theorem (@van2014bayes)">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Theorem (<span class="citation" data-cites="van2014bayes">K. G. Van den Boogaart, Egozcue, and Pawlowsky-Glahn (<a href="#/referenceenars" role="doc-biblioref" onclick="">2014</a>)</span>)</strong></p>
+</div>
+<div class="callout-content">
+<div style="font-size:20pt;">
+<p><span class="math inline">\(\mathrm{clr}:B^2(\lambda)\to L_0^2(\lambda)\)</span> is an isometry of Hilbert spaces.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section id="bridging-the-gap" class="title-slide slide level1 center">
 <h1>Bridging the Gap</h1>
 
-<img src="pictures/Logos.svg" class="slide-logo r-stretch"><div class="footer footer-default">
+</section>
+
+<section id="referenceenars" class="title-slide slide level1 smaller scrollable">
+<h1>Referenceenars</h1>
+<div class="quarto-auto-generated-content">
+<p><img src="pictures/Logos.svg" class="slide-logo"></p>
+<div class="footer footer-default">
 
 </div>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-csiszar2004information" class="csl-entry" role="listitem">
 Csiszár, Imre, Paul C Shields, et al. 2004. <span>“Information Theory and Statistics: A Tutorial.”</span> <em>Foundations and Trends<span></span> in Communications and Information Theory</em> 1 (4): 417–528.
 </div>
@@ -458,6 +604,18 @@ Goodfellow, Ian, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, S
 </div>
 <div id="ref-nguyen2010estimating" class="csl-entry" role="listitem">
 Nguyen, XuanLong, Martin J Wainwright, and Michael I Jordan. 2010. <span>“Estimating Divergence Functionals and the Likelihood Ratio by Convex Risk Minimization.”</span> <em>IEEE Transactions on Information Theory</em> 56 (11): 5847–61.
+</div>
+<div id="ref-nowozin2016f" class="csl-entry" role="listitem">
+Nowozin, Sebastian, Botond Cseke, and Ryota Tomioka. 2016. <span>“F-Gan: Training Generative Neural Samplers Using Variational Divergence Minimization.”</span> <em>Advances in Neural Information Processing Systems</em> 29.
+</div>
+<div id="ref-textbook" class="csl-entry" role="listitem">
+Rockafellar, Ralph Tyrell. 1970. <em>Convex Analysis</em>. Princeton University Press.
+</div>
+<div id="ref-van2014bayes" class="csl-entry" role="listitem">
+Van den Boogaart, Karl Gerald, Juan José Egozcue, and Vera Pawlowsky-Glahn. 2014. <span>“Bayes Hilbert Spaces.”</span> <em>Australian &amp; New Zealand Journal of Statistics</em> 56 (2): 171–94.
+</div>
+<div id="ref-boogaart2010bayes" class="csl-entry" role="listitem">
+Van den Boogaart, K, Juan José Egozcue, and Vera Pawlowsky-Glahn. 2010. <span>“Bayes Linear Spaces.”</span> <em>SORT: Statistics and Operations Research Transactions, 2010, Vol. 34, n<span>ú</span>m. 4, p. 201-222</em>.
 </div>
 </div>
 </section>
@@ -489,7 +647,6 @@ Nguyen, XuanLong, Martin J Wainwright, and Michael I Jordan. 2010. <span>“Esti
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -750,10 +907,27 @@ Nguyen, XuanLong, Martin J Wainwright, and Michael I Jordan. 2010. <span>“Esti
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -763,8 +937,17 @@ Nguyen, XuanLong, Martin J Wainwright, and Michael I Jordan. 2010. <span>“Esti
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -778,7 +961,11 @@ Nguyen, XuanLong, Martin J Wainwright, and Michael I Jordan. 2010. <span>“Esti
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {
