@@ -8,7 +8,7 @@
 <link href="BHSGAN_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="BHSGAN_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="BHSGAN_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.555">
+  <meta name="generator" content="quarto-1.3.450">
 
   <title>Bridging the Gap Between f-GANs and Bayes Hilbert Spaces</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -32,7 +32,6 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
-      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -175,8 +174,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -365,6 +363,7 @@
 <li><a href="#/f-gans" id="/toc-f-gans"><span class="math inline">\(f\)</span>-GANs</a></li>
 <li><a href="#/bayes-hilbert-spaces" id="/toc-bayes-hilbert-spaces">Bayes Hilbert Spaces</a></li>
 <li><a href="#/mixed-conjugates-and-pseudo-f-divergences" id="/toc-mixed-conjugates-and-pseudo-f-divergences">Mixed conjugates and pseudo <span class="math inline">\(f\)</span>-divergences</a></li>
+<li><a href="#/bayes-hilbert-space-gans" id="/toc-bayes-hilbert-space-gans">Bayes Hilbert space GANs</a></li>
 <li><a href="#/references" id="/toc-references">References</a></li>
 </ul>
 </nav>
@@ -423,7 +422,6 @@
 <section id="fenchel-conjugates" class="slide level2">
 <h2>Fenchel conjugates</h2>
 <div style="font-size:21pt;">
-<div title="Theorem (@textbook)">
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -436,9 +434,7 @@
 </div>
 </div>
 </div>
-</div>
 <p>This theorem also works for concave functions:</p>
-<div title="Theorem (@textbook)">
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -451,7 +447,6 @@
 </div>
 </div>
 </div>
-</div>
 <p>Here, <span class="math display">\[\begin{equation}
 f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 \end{equation}\]</span></p>
@@ -459,7 +454,10 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 </section>
 <section id="optimizing-the-lower-bound" class="slide level2">
 <h2>Optimizing the lower bound</h2>
-<p>If <span class="math inline">\(f\)</span> is not only convex and lower semicontinuous but <span class="math inline">\(f \in \mathcal{C}^1\)</span>, then the bound is tight and the supremum is attained at</p>
+<p>If <span class="math inline">\(f\)</span> is not only convex and lower semicontinuous but <span class="math inline">\(f \in \mathcal{C}^1\)</span>, then the bound <span class="math display">\[\begin{equation}
+  D_f(\mu,\nu) \geq \sup_{T\in{\mathcal{T}}}\bigg\{{\mathbb{E}}_\mu(T)- {\mathbb{E}}_\nu(f^*\circ T)\bigg\}
+\end{equation}\]</span></p>
+<p>is tight and the supremum is attained at</p>
 <p><span class="math display">\[\begin{equation}
   \tilde{T} (x) = f^\prime\left(\frac{p_\mu(x)}{p_\nu(x)}\right).
 \end{equation}\]</span></p>
@@ -518,7 +516,6 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 <p><span class="math display">\[\begin{equation}
   (\alpha \odot \mu)(R) := \int_R\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right)^\alpha {\mathrm{d}}\lambda
 \end{equation}\]</span></p>
-<div title="Theorem (@boogaart2010bayes)">
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -527,7 +524,6 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 <div class="callout-content">
 <div style="font-size:24pt;">
 <p><span class="math inline">\((B(\lambda),\oplus,\odot)\)</span> is a linear space.</p>
-</div>
 </div>
 </div>
 </div>
@@ -547,7 +543,6 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 </section>
 <section id="bayes-hilbert-spaces-1" class="slide level2">
 <h2>Bayes Hilbert spaces</h2>
-<div title="Theorem (@van2014bayes)">
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -566,8 +561,6 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 </div>
 </div>
 </div>
-</div>
-<div title="Theorem (@van2014bayes)">
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -576,7 +569,6 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 <div class="callout-content">
 <div style="font-size:20pt;">
 <p><span class="math inline">\(\mathrm{clr}:B^2(\lambda)\to L_0^2(\lambda)\)</span> is an isometry of Hilbert spaces.</p>
-</div>
 </div>
 </div>
 </div>
@@ -590,7 +582,7 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 <section id="mixed-conjugates" class="slide level2">
 <h2>Mixed conjugates</h2>
 <div style="font-size:24pt;">
-<p>Consider <span class="math inline">\(f:[0,\infty)\to{\mathbb{R}}\)</span>, continuous, concave on some interval <span class="math inline">\([0,a),\, a&gt;0\)</span>, and convex on <span class="math inline">\([a,\infty)\)</span>. The mixed conjugate <span class="math inline">\(f^*_*\)</span> of <span class="math inline">\(f\)</span> is defined by</p>
+<p>Consider <span class="math inline">\(f:[0,\infty)\to{\mathbb{R}}\)</span> continuous, satisfying <span class="math inline">\(f(1)=0\)</span>, concave on some interval <span class="math inline">\([0,a),\, a&gt;0\)</span>, and convex on <span class="math inline">\([a,\infty)\)</span>. The mixed conjugate <span class="math inline">\(f^*_*\)</span> of <span class="math inline">\(f\)</span> is defined by</p>
 <p><span class="math display">\[\begin{equation}\label{def:mixed_conjugate}
     f^*_*(t) := \sup_{x\in [a,\infty)}\{tx-f(x)\}\mathbb{I}_{\{t\in M\}}+\inf_{x\in [0,a)}\{tx-f(x)\}\mathbb{I}_{\{t\in N\}}
 \end{equation}\]</span></p>
@@ -605,7 +597,6 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 </section>
 <section id="mixed-conjugates-and-pseudo-f-divergences-1" class="slide level2">
 <h2>Mixed conjugates and pseudo <span class="math inline">\(f\)</span>-divergences</h2>
-<div title="Lemma">
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -620,8 +611,6 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 </div>
 </div>
 </div>
-</div>
-<div title="Lemma">
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -632,11 +621,13 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 </div>
 </div>
 </div>
-</div>
 </section>
+<section id="pseudo-divergence-generating-functions" class="slide level2">
+<h2>Pseudo divergence generating functions</h2>
+
+<img data-src="pictures/pseudof.svg" class="r-stretch"></section>
 <section id="lower-bounds-for-pseudo-f-divergences" class="slide level2">
 <h2>Lower bounds for pseudo <span class="math inline">\(f\)</span>-divergences</h2>
-<div title="Corollary">
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -651,11 +642,9 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 </div>
 </div>
 </div>
-</div>
 </section>
 <section id="optimizing-lower-bounds-for-pseudo-f-divergences" class="slide level2">
 <h2>Optimizing lower bounds for pseudo <span class="math inline">\(f\)</span>-divergences</h2>
-<div title="Theorem">
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -670,17 +659,108 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="bayes-hilbert-space-gans" class="title-slide slide level1 center">
+<h1>Bayes Hilbert space GANs</h1>
+
+</section>
+<section id="bayes-hilbert-space-divergence" class="slide level2">
+<h2>Bayes Hilbert space divergence</h2>
+<p>Consider the function</p>
+<p><span class="math display">\[\begin{equation}\label{eq:f_BHS}
+    f_{BHS}:[0,\infty)\to{\mathbb{R}},\quad x\mapsto x\log(x)^2
+\end{equation}\]</span></p>
+<p>that is convcave on <span class="math inline">\([0,\exp(-1)]\)</span> and convex for <span class="math inline">\(x&gt;\exp(-1)\)</span>.</p>
+<p>Applying the previous lemma implies that <span class="math inline">\(f_{BHS}\)</span> induces a pseudo <span class="math inline">\(f\)</span>-divergence called <span class="math inline">\(f_{BHS}\)</span>-divergence.</p>
+</section>
+<section id="connection-to-bayes-hilbert-spaces" class="slide level2">
+<h2>Connection to Bayes Hilbert spaces</h2>
+<p><span class="math display">\[\begin{align}
+  D_{f_{BHS}}(\mu,\nu) &amp;= d_{B^2(\mu)}(\mu,\nu) + \mathbb{E}_{\mu}(\log(\mu \ominus \nu))^2\\
+\end{align}\]</span></p>
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Corollary</strong></p>
+</div>
+<div class="callout-content">
+<p>For <span class="math inline">\(\tilde T(x) = f_{BHS}^\prime\left(\frac{p_\mu(x)}{p_\nu(x)}\right)\)</span> we have <span class="math display">\[\begin{align}
+      \sup_{T\in C}&amp;\left\{({\mathbb{E}}_\mu(T) - {\mathbb{E}}_\nu(f^*_*\circ T)) \mathbb{I}_{\{T\in M_C\}}\right\}+ \\
+    &amp;\qquad\inf_{T\in C}\left\{({\mathbb{E}}_\mu(T) - {\mathbb{E}}_\nu(f^*_*\circ T)) \mathbb{I}_{\{T\in N_C\}}\right\}\\
+    &amp;={\mathbb{E}}_\mu(\tilde T)- {\mathbb{E}}_\nu(f^*_*\circ \tilde T)\\
+    &amp; = D_{f_{\mathrm{BHS}}}(\mu,\nu).
+\end{align}\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="bayes-hilbert-space-gan" class="slide level2">
+<h2>Bayes Hilbert space GAN</h2>
+<p>Optimization problem:</p>
+<p><span class="math display">\[\begin{equation}
+
+\min_{\vartheta}\max_{\omega}F(\vartheta,\omega) := \min_{\vartheta}\max_{\omega} {\mathbb{E}}_\mu(\bar{T}_\omega)-{\mathbb{E}}_{\nu_\vartheta}(f^*_*\circ \bar{T}_\omega).
+
+\end{equation}\]</span></p>
+<p>where</p>
+<p><span class="math display">\[\begin{equation}
+  \bar{T}_\omega(x) = g_f\circ V_\omega(x).
+\end{equation}\]</span></p>
+<p><span class="math inline">\(V_\omega\)</span> denotes the discriminatory model with no restrictions on the output, i.e., <span class="math inline">\(\mathrm{Im}(V_\omega) \subseteq {\mathbb{R}}\)</span> and <span class="math inline">\(g_f\)</span> a final output activation function depending on the domain of <span class="math inline">\(f^*_*\)</span>.</p>
+</section>
+<section id="computational-results" class="slide level2">
+<h2>Computational results</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="font-size:24pt;">
+<table>
+<thead>
+<tr class="header">
+<th><strong>Model</strong></th>
+<th><strong>FID</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BHSGAN</td>
+<td>31.26 ± 0.08</td>
+</tr>
+<tr class="even">
+<td>KL GAN</td>
+<td>37.50 ± 0.13</td>
+</tr>
+<tr class="odd">
+<td>Reverse KL GAN</td>
+<td>85.27 ± 0.19</td>
+</tr>
+<tr class="even">
+<td>Pearson GAN</td>
+<td>33.60 ± 0.38</td>
+</tr>
+<tr class="odd">
+<td>GAN</td>
+<td>33.60 ± 0.10</td>
+</tr>
+<tr class="even">
+<td>WGAN</td>
+<td>30.81 ± 0.12</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="pictures/CIFAR_Summary.png"></p>
+</div>
 </div>
 </section></section>
 <section id="references" class="title-slide slide level1 smaller scrollable">
 <h1>References</h1>
-<div class="quarto-auto-generated-content">
-<p><img src="pictures/Logos.svg" class="slide-logo"></p>
-<div class="footer footer-default">
+
+<img src="pictures/Logos.svg" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
-</div>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-csiszar2004information" class="csl-entry" role="listitem">
 Csiszár, Imre, Paul C Shields, et al. 2004. <span>“Information Theory and Statistics: A Tutorial.”</span> <em>Foundations and Trends<span></span> in Communications and Information Theory</em> 1 (4): 417–528.
 </div>
@@ -732,6 +812,7 @@ Van den Boogaart, K, Juan José Egozcue, and Vera Pawlowsky-Glahn. 2010. <span>�
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -757,7 +838,7 @@ Van den Boogaart, K, Juan José Egozcue, and Vera Pawlowsky-Glahn. 2010. <span>�
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -992,27 +1073,10 @@ Van den Boogaart, K, Juan José Egozcue, and Vera Pawlowsky-Glahn. 2010. <span>�
         // clear code selection
         e.clearSelection();
       });
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1022,17 +1086,8 @@ Van den Boogaart, K, Juan José Egozcue, and Vera Pawlowsky-Glahn. 2010. <span>�
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1046,11 +1101,7 @@ Van den Boogaart, K, Juan José Egozcue, and Vera Pawlowsky-Glahn. 2010. <span>�
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
+          return note.innerHTML;
         });
       }
       const findCites = (el) => {

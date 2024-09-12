@@ -8,6 +8,7 @@ format:
     toc-title: "Content"
     toc-depth: 1
     progress: true
+    slide-number: true
     fig-cap-location: top
     include-in-header: 
       text: |
@@ -134,7 +135,12 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 
 ## Optimizing the lower bound 
 
-If $f$ is not only convex and lower semicontinuous but $f \in \mathcal{C}^1$, then the bound is tight and the supremum is attained at
+If $f$ is not only convex and lower semicontinuous but $f \in \mathcal{C}^1$, then the bound
+\begin{equation}
+  D_f(\mu,\nu) \geq \sup_{T\in\cT}\bigg\{\bE_\mu(T)- \bE_\nu(f^*\circ T)\bigg\}
+\end{equation}
+
+is tight and the supremum is attained at
 
 \begin{equation}
   \tilde{T} (x) = f^\prime\left(\frac{p_\mu(x)}{p_\nu(x)}\right).
@@ -265,7 +271,7 @@ $\mathrm{clr}:B^2(\lambda)\to L_0^2(\lambda)$ is an isometry of Hilbert spaces.
 
 :::{style="font-size:24pt;"}
 
-Consider $f:[0,\infty)\to\bR$, continuous, concave on some interval $[0,a),\, a>0$, and convex on $[a,\infty)$.
+Consider $f:[0,\infty)\to\bR$ continuous, satisfying $f(1)=0$, concave on some interval $[0,a),\, a>0$, and convex on $[a,\infty)$.
 The mixed conjugate $f^*_*$ of $f$ is defined by
 
 \begin{equation}\label{def:mixed_conjugate}
@@ -304,6 +310,9 @@ For any probability measures $\mu,\nu\in B^2(\lambda),\: D_{f}(\mu,\nu)$ is well
 
 :::
 
+## Pseudo divergence generating functions
+
+![](pictures/pseudof.svg)
 
 ## Lower bounds for pseudo $f$-divergences
 
@@ -339,11 +348,79 @@ Here, $C(M^*)$ ($C(N^*)$) denotes the set of continuous functions $T:\Omega\to \
 
 ## Bayes Hilbert space divergence
 
-Consider the function which is convcave on $[0,\exp(-1)]$ and convex on $(\exp(-1),\infty)$
+Consider the function 
 
 \begin{equation}\label{eq:f_BHS}
-    f_{BHS}:[0,\infty)\to\bR,\quad x\mapsto x\log(x)^2.
+    f_{BHS}:[0,\infty)\to\bR,\quad x\mapsto x\log(x)^2
 \end{equation}
+
+that is convcave on $[0,\exp(-1)]$ and convex for $x>\exp(-1)$.
+
+Applying the previous lemma implies that $f_{BHS}$ induces a pseudo $f$-divergence called $f_{BHS}$-divergence.
+
+## Connection to Bayes Hilbert spaces
+
+\begin{align}
+  D_{f_{BHS}}(\mu,\nu) &= d_{B^2(\mu)}(\mu,\nu) + \mathbb{E}_{\mu}(\log(\mu \ominus \nu))^2\\
+\end{align}
+
+:::{.callout-note title="Corollary" icon="false"}
+
+For $\tilde T(x) = f_{BHS}^\prime\left(\frac{p_\mu(x)}{p_\nu(x)}\right)$ we have 
+\begin{align}
+      \sup_{T\in C}&\left\{(\bE_\mu(T) - \bE_\nu(f^*_*\circ T)) \mathbb{I}_{\{T\in M_C\}}\right\}+ \\
+    &\qquad\inf_{T\in C}\left\{(\bE_\mu(T) - \bE_\nu(f^*_*\circ T)) \mathbb{I}_{\{T\in N_C\}}\right\}\\
+    &=\bE_\mu(\tilde T)- \bE_\nu(f^*_*\circ \tilde T)\\
+    & = D_{f_{\mathrm{BHS}}}(\mu,\nu).
+\end{align}
+:::
+
+## Bayes Hilbert space GAN
+
+Optimization problem:
+
+\begin{equation}
+
+\min_{\vartheta}\max_{\omega}F(\vartheta,\omega) := \min_{\vartheta}\max_{\omega} \bE_\mu(\bar{T}_\omega)-\bE_{\nu_\vartheta}(f^*_*\circ \bar{T}_\omega).
+
+\end{equation}
+
+where
+
+\begin{equation}
+  \bar{T}_\omega(x) = g_f\circ V_\omega(x).
+\end{equation}
+
+$V_\omega$ denotes the discriminatory model with no restrictions on the output, i.e., $\mathrm{Im}(V_\omega) \subseteq \bR$ and $g_f$ a final output activation function depending on the domain of $f^*_*$.
+
+
+## Computational results 
+
+::::{.columns}
+
+:::{.column width="50%"}
+
+:::{style="font-size:24pt;"}
+
+| **Model**         | **FID**          |
+|-------------------|------------------|
+| BHSGAN            | 31.26 ± 0.08     |
+| KL GAN            | 37.50 ± 0.13     |
+| Reverse KL GAN    | 85.27 ± 0.19     |
+| Pearson GAN       | 33.60 ± 0.38     |
+| GAN               | 33.60 ± 0.10     |
+| WGAN              | 30.81 ± 0.12     |
+
+:::
+:::
+:::{.column width="50%"}
+
+![](pictures/CIFAR_Summary.png)
+:::
+
+::::
+
+
 
 
 # References
