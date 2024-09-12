@@ -221,7 +221,7 @@ $$
   B^p(\lambda) = \left\{\mu\in B(\lambda): \int_{\mathbb{R}}\left|\log\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right) \right|^p{\mathrm{d}}\lambda <+\infty\right\}.
 $$
 
-The $\mathrm{clr}$ of $\mu\in B^1(p)$ is defined as
+The $\mathrm{clr}$ of $\mu\in B^p(\lambda)$ is defined as
 
 $$
 \mathrm{clr}(\mu) = \log\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right) - \int \log\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right)\: {\mathrm{d}}\lambda.
@@ -259,7 +259,91 @@ $\mathrm{clr}:B^2(\lambda)\to L_0^2(\lambda)$ is an isometry of Hilbert spaces.
 :::
 
 
-# Bridging the Gap
+# Mixed conjugates and pseudo $f$-divergences
+
+## Mixed conjugates
+
+:::{style="font-size:24pt;"}
+
+Consider $f:[0,\infty)\to\bR$, continuous, concave on some interval $[0,a),\, a>0$, and convex on $[a,\infty)$.
+The mixed conjugate $f^*_*$ of $f$ is defined by
+
+\begin{equation}\label{def:mixed_conjugate}
+    f^*_*(t) := \sup_{x\in [a,\infty)}\{tx-f(x)\}\mathbb{I}_{\{t\in M\}}+\inf_{x\in [0,a)}\{tx-f(x)\}\mathbb{I}_{\{t\in N\}}
+\end{equation}
+
+where
+
+:::
+
+:::{style="font-size:22pt;"}
+
+\begin{align*}
+    M &:= \left\{t\in\mathrm{dom}(f^*_*):\underset{x\in\mathrm{dom(f)}}{\mathrm{argmax}}(tx-f(x))\in [a,\infty) \right\},\\
+    N &:= \left\{t\in\mathrm{dom}(f^*_*):\underset{x\in\mathrm{dom(f)}}{\mathrm{argmin}}(tx-f(x))\in  [0,a) \right\}.
+\end{align*}
+
+:::
+
+## Mixed conjugates and pseudo $f$-divergences
+
+:::{.callout-note title="Lemma" icon="false"}
+
+For any continuous function $f:[0,\infty)\to\bR$ that is convex on $[a,\infty),\:a> 0$, concave on $[0,a)$, and satisfies $\lim_{x\to\infty} f(x) = +\infty$, the mixed conjugate satisfies:
+
+1.    $M\cap N = \emptyset$ and $M\cup N = \mathrm{dom}(f^*_*)$
+
+2.    $f^{**}_{**} = f$ for almost all $t\in\mathrm{dom}(f)$.
+    
+:::
+
+:::{.callout-note title="Lemma" icon="false"}
+
+Let $f:[0,\infty)\to [0,\infty)$ be concave on some interval $[0,a),\: a>0$ and convex on $[a,\infty)$.
+For any probability measures $\mu,\nu\in B^2(\lambda),\: D_{f}(\mu,\nu)$ is well-defined in the sense that $D_{f}(\mu,\nu)\geq 0$ and $D_{f}(\mu,\nu) = 0 \iff \mu = \nu\quad \lambda-\text{a.s.}$
+
+:::
 
 
-# Referenceenars
+## Lower bounds for pseudo $f$-divergences
+
+:::{.callout-note title="Corollary" icon="false"}
+
+ For any function $f$ satisfying the conditions of the previous Lemma, the lower bound  
+ \begin{equation}\label{eq:lower_bound}
+     D_f(\mu,\nu) \geq \sup_{\bar T\in C(M^*)\cup C(N^*)}\bigg\{\bE_\mu(\bar T)- \bE_\nu(f^*_*\circ \bar T)\bigg\}
+ \end{equation}
+ 
+ holds.
+
+:::
+
+
+## Optimizing lower bounds for pseudo $f$-divergences
+
+:::{.callout-note title="Theorem" icon="false"}
+
+Let $f:[0,\infty) \to\bR$, convex on $[a,\infty)$ with $0< a<\infty$, concave on $[0,a)$, assume that $f$ is twice continuously differentiable, and that $((f^*_*)^{\prime})^{-1}$ is well-defined.
+Furthermore, let $\mu,\nu\in B^2(\lambda)$ with $p_\mu(x):= \frac{\rmd \mu}{\rmd \lambda}(x) ,\, p_\nu(x):=\frac{\rmd \nu}{\rmd \lambda}(x)$ .
+Then, $\tilde T(x) := f^\prime \left(\frac{p_\mu(x)}{p_\nu(x)}\right)$ is an optimizer for
+\begin{equation}
+    \sup_{T\in C(M^*)}\bigg\{\left(\bE_\mu(T)- \bE_\nu(f^*_*\circ T)\right)\bigg\} +
+    \inf_{T\in C(N^*)}\bigg\{(\bE_\mu(T)- \bE_\nu(f^*_*\circ T))\bigg\}.\label{eq:supE_infE}
+   % \sup_{T\in\cT}\left\{\bE_\mu(T) - \bE_\nu(f^*_*\circ T) \right\}.\label{eq:supE}
+\end{equation}
+Here, $C(M^*)$ ($C(N^*)$) denotes the set of continuous functions $T:\Omega\to \mathrm{dom}(f^*_*)$ such that $f^*_* \circ T$ is convex (concave).
+
+:::
+
+# Bayes Hilbert space GANs
+
+## Bayes Hilbert space divergence
+
+Consider the function which is convcave on $[0,\exp(-1)]$ and convex on $(\exp(-1),\infty)$
+
+\begin{equation}\label{eq:f_BHS}
+    f_{BHS}:[0,\infty)\to\bR,\quad x\mapsto x\log(x)^2.
+\end{equation}
+
+
+# References

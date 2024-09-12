@@ -364,8 +364,8 @@
 <ul>
 <li><a href="#/f-gans" id="/toc-f-gans"><span class="math inline">\(f\)</span>-GANs</a></li>
 <li><a href="#/bayes-hilbert-spaces" id="/toc-bayes-hilbert-spaces">Bayes Hilbert Spaces</a></li>
-<li><a href="#/bridging-the-gap" id="/toc-bridging-the-gap">Bridging the Gap</a></li>
-<li><a href="#/referenceenars" id="/toc-referenceenars">Referenceenars</a></li>
+<li><a href="#/mixed-conjugates-and-pseudo-f-divergences" id="/toc-mixed-conjugates-and-pseudo-f-divergences">Mixed conjugates and pseudo <span class="math inline">\(f\)</span>-divergences</a></li>
+<li><a href="#/references" id="/toc-references">References</a></li>
 </ul>
 </nav>
 </section>
@@ -378,7 +378,7 @@
 </div>
 </section>
 <section id="f-divergences-csiszar2004information" class="slide level2">
-<h2><span class="math inline">\(f\)</span>-Divergences <span class="citation" data-cites="csiszar2004information">(<a href="#/referenceenars" role="doc-biblioref" onclick="">Csiszár, Shields, et al. 2004</a>)</span></h2>
+<h2><span class="math inline">\(f\)</span>-Divergences <span class="citation" data-cites="csiszar2004information">(<a href="#/references" role="doc-biblioref" onclick="">Csiszár, Shields, et al. 2004</a>)</span></h2>
 <div style="font-size:24pt;">
 <p>Quantify dissimilarity between two probability measures <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\nu\)</span> that are absolutely continuous w.r.t to some <span class="math inline">\(\sigma\)</span>-finite base measure <span class="math inline">\(\lambda\)</span>.<sup>1</sup></p>
 <p><span class="math display">\[
@@ -405,7 +405,7 @@
 <li><p>Only finite samples available</p></li>
 <li><p>Highdimensional setting</p></li>
 </ul>
-<p><strong>Solution:</strong> Find easy to estimate lower bound <span class="citation" data-cites="nguyen2010estimating">(<a href="#/referenceenars" role="doc-biblioref" onclick="">Nguyen, Wainwright, and Jordan 2010</a>)</span>:</p>
+<p><strong>Solution:</strong> Find easy to estimate lower bound <span class="citation" data-cites="nguyen2010estimating">(<a href="#/references" role="doc-biblioref" onclick="">Nguyen, Wainwright, and Jordan 2010</a>)</span>:</p>
 <p><span class="math display">\[\begin{equation}
   D_f(\mu,\nu) \geq \sup_{T\in{\mathcal{T}}}\bigg\{{\mathbb{E}}_\mu(T)- {\mathbb{E}}_\nu(f^*\circ T)\bigg\}
 \end{equation}\]</span></p>
@@ -427,7 +427,7 @@
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Theorem (<span class="citation" data-cites="textbook">Rockafellar (<a href="#/referenceenars" role="doc-biblioref" onclick="">1970</a>)</span>)</strong></p>
+<p><strong>Theorem (<span class="citation" data-cites="textbook">Rockafellar (<a href="#/references" role="doc-biblioref" onclick="">1970</a>)</span>)</strong></p>
 </div>
 <div class="callout-content">
 <div style="font-size:21pt;">
@@ -442,7 +442,7 @@
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Theorem (<span class="citation" data-cites="textbook">Rockafellar (<a href="#/referenceenars" role="doc-biblioref" onclick="">1970</a>)</span>)</strong></p>
+<p><strong>Theorem (<span class="citation" data-cites="textbook">Rockafellar (<a href="#/references" role="doc-biblioref" onclick="">1970</a>)</span>)</strong></p>
 </div>
 <div class="callout-content">
 <div style="font-size:21pt;">
@@ -477,7 +477,7 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 </section>
 <section id="training-objective-for-f-gans" class="slide level2">
 <h2>Training objective for <span class="math inline">\(f\)</span>-GANs</h2>
-<p><span class="citation" data-cites="nowozin2016f">Nowozin, Cseke, and Tomioka (<a href="#/referenceenars" role="doc-biblioref" onclick="">2016</a>)</span> extended the work of <span class="citation" data-cites="goodfellow2014generative">Goodfellow et al. (<a href="#/referenceenars" role="doc-biblioref" onclick="">2014</a>)</span> to a generalized optimization problem:</p>
+<p><span class="citation" data-cites="nowozin2016f">Nowozin, Cseke, and Tomioka (<a href="#/references" role="doc-biblioref" onclick="">2016</a>)</span> extended the work of <span class="citation" data-cites="goodfellow2014generative">Goodfellow et al. (<a href="#/references" role="doc-biblioref" onclick="">2014</a>)</span> to a generalized optimization problem:</p>
 <p><span class="math display">\[\begin{equation}
 
 \min_{\theta} \max_{\omega} \bigg[ \mathbb{E}_{\mu}(T_\omega) - \mathbb{E}_{\nu_{\theta}} (f^*\circ T_\omega) \bigg]
@@ -522,7 +522,7 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Theorem (<span class="citation" data-cites="boogaart2010bayes">K. Van den Boogaart, Egozcue, and Pawlowsky-Glahn (<a href="#/referenceenars" role="doc-biblioref" onclick="">2010</a>)</span>)</strong></p>
+<p><strong>Theorem (<span class="citation" data-cites="boogaart2010bayes">K. Van den Boogaart, Egozcue, and Pawlowsky-Glahn (<a href="#/references" role="doc-biblioref" onclick="">2010</a>)</span>)</strong></p>
 </div>
 <div class="callout-content">
 <div style="font-size:24pt;">
@@ -540,7 +540,7 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 <p><span class="math display">\[
   B^p(\lambda) = \left\{\mu\in B(\lambda): \int_{\mathbb{R}}\left|\log\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right) \right|^p{\mathrm{d}}\lambda &lt;+\infty\right\}.
 \]</span></p>
-<p>The <span class="math inline">\(\mathrm{clr}\)</span> of <span class="math inline">\(\mu\in B^1(p)\)</span> is defined as</p>
+<p>The <span class="math inline">\(\mathrm{clr}\)</span> of <span class="math inline">\(\mu\in B^p(\lambda)\)</span> is defined as</p>
 <p><span class="math display">\[
 \mathrm{clr}(\mu) = \log\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right) - \int \log\left(\frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}\right)\: {\mathrm{d}}\lambda.
 \]</span></p>
@@ -551,7 +551,7 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Theorem (<span class="citation" data-cites="van2014bayes">K. G. Van den Boogaart, Egozcue, and Pawlowsky-Glahn (<a href="#/referenceenars" role="doc-biblioref" onclick="">2014</a>)</span>)</strong></p>
+<p><strong>Theorem (<span class="citation" data-cites="van2014bayes">K. G. Van den Boogaart, Egozcue, and Pawlowsky-Glahn (<a href="#/references" role="doc-biblioref" onclick="">2014</a>)</span>)</strong></p>
 </div>
 <div class="callout-content">
 <p><span class="math inline">\(B^2(\lambda)\)</span> equipped with the inner product</p>
@@ -571,7 +571,7 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Theorem (<span class="citation" data-cites="van2014bayes">K. G. Van den Boogaart, Egozcue, and Pawlowsky-Glahn (<a href="#/referenceenars" role="doc-biblioref" onclick="">2014</a>)</span>)</strong></p>
+<p><strong>Theorem (<span class="citation" data-cites="van2014bayes">K. G. Van den Boogaart, Egozcue, and Pawlowsky-Glahn (<a href="#/references" role="doc-biblioref" onclick="">2014</a>)</span>)</strong></p>
 </div>
 <div class="callout-content">
 <div style="font-size:20pt;">
@@ -582,13 +582,98 @@ f_*(y) := \inf_{x\in\mathrm{dom}(g)}\{xy-f(x)\}.
 </div>
 </div>
 </section></section>
-<section id="bridging-the-gap" class="title-slide slide level1 center">
-<h1>Bridging the Gap</h1>
+<section>
+<section id="mixed-conjugates-and-pseudo-f-divergences" class="title-slide slide level1 center">
+<h1>Mixed conjugates and pseudo <span class="math inline">\(f\)</span>-divergences</h1>
 
 </section>
-
-<section id="referenceenars" class="title-slide slide level1 smaller scrollable">
-<h1>Referenceenars</h1>
+<section id="mixed-conjugates" class="slide level2">
+<h2>Mixed conjugates</h2>
+<div style="font-size:24pt;">
+<p>Consider <span class="math inline">\(f:[0,\infty)\to{\mathbb{R}}\)</span>, continuous, concave on some interval <span class="math inline">\([0,a),\, a&gt;0\)</span>, and convex on <span class="math inline">\([a,\infty)\)</span>. The mixed conjugate <span class="math inline">\(f^*_*\)</span> of <span class="math inline">\(f\)</span> is defined by</p>
+<p><span class="math display">\[\begin{equation}\label{def:mixed_conjugate}
+    f^*_*(t) := \sup_{x\in [a,\infty)}\{tx-f(x)\}\mathbb{I}_{\{t\in M\}}+\inf_{x\in [0,a)}\{tx-f(x)\}\mathbb{I}_{\{t\in N\}}
+\end{equation}\]</span></p>
+<p>where</p>
+</div>
+<div style="font-size:22pt;">
+<p><span class="math display">\[\begin{align*}
+    M &amp;:= \left\{t\in\mathrm{dom}(f^*_*):\underset{x\in\mathrm{dom(f)}}{\mathrm{argmax}}(tx-f(x))\in [a,\infty) \right\},\\
+    N &amp;:= \left\{t\in\mathrm{dom}(f^*_*):\underset{x\in\mathrm{dom(f)}}{\mathrm{argmin}}(tx-f(x))\in  [0,a) \right\}.
+\end{align*}\]</span></p>
+</div>
+</section>
+<section id="mixed-conjugates-and-pseudo-f-divergences-1" class="slide level2">
+<h2>Mixed conjugates and pseudo <span class="math inline">\(f\)</span>-divergences</h2>
+<div title="Lemma">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Lemma</strong></p>
+</div>
+<div class="callout-content">
+<p>For any continuous function <span class="math inline">\(f:[0,\infty)\to{\mathbb{R}}\)</span> that is convex on <span class="math inline">\([a,\infty),\:a&gt; 0\)</span>, concave on <span class="math inline">\([0,a)\)</span>, and satisfies <span class="math inline">\(\lim_{x\to\infty} f(x) = +\infty\)</span>, the mixed conjugate satisfies:</p>
+<ol type="1">
+<li><p><span class="math inline">\(M\cap N = \emptyset\)</span> and <span class="math inline">\(M\cup N = \mathrm{dom}(f^*_*)\)</span></p></li>
+<li><p><span class="math inline">\(f^{**}_{**} = f\)</span> for almost all <span class="math inline">\(t\in\mathrm{dom}(f)\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div title="Lemma">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Lemma</strong></p>
+</div>
+<div class="callout-content">
+<p>Let <span class="math inline">\(f:[0,\infty)\to [0,\infty)\)</span> be concave on some interval <span class="math inline">\([0,a),\: a&gt;0\)</span> and convex on <span class="math inline">\([a,\infty)\)</span>. For any probability measures <span class="math inline">\(\mu,\nu\in B^2(\lambda),\: D_{f}(\mu,\nu)\)</span> is well-defined in the sense that <span class="math inline">\(D_{f}(\mu,\nu)\geq 0\)</span> and <span class="math inline">\(D_{f}(\mu,\nu) = 0 \iff \mu = \nu\quad \lambda-\text{a.s.}\)</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lower-bounds-for-pseudo-f-divergences" class="slide level2">
+<h2>Lower bounds for pseudo <span class="math inline">\(f\)</span>-divergences</h2>
+<div title="Corollary">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Corollary</strong></p>
+</div>
+<div class="callout-content">
+<p>For any function <span class="math inline">\(f\)</span> satisfying the conditions of the previous Lemma, the lower bound<br>
+<span class="math display">\[\begin{equation}\label{eq:lower_bound}
+     D_f(\mu,\nu) \geq \sup_{\bar T\in C(M^*)\cup C(N^*)}\bigg\{{\mathbb{E}}_\mu(\bar T)- {\mathbb{E}}_\nu(f^*_*\circ \bar T)\bigg\}
+\end{equation}\]</span></p>
+<p>holds.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="optimizing-lower-bounds-for-pseudo-f-divergences" class="slide level2">
+<h2>Optimizing lower bounds for pseudo <span class="math inline">\(f\)</span>-divergences</h2>
+<div title="Theorem">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Theorem</strong></p>
+</div>
+<div class="callout-content">
+<p>Let <span class="math inline">\(f:[0,\infty) \to{\mathbb{R}}\)</span>, convex on <span class="math inline">\([a,\infty)\)</span> with <span class="math inline">\(0&lt; a&lt;\infty\)</span>, concave on <span class="math inline">\([0,a)\)</span>, assume that <span class="math inline">\(f\)</span> is twice continuously differentiable, and that <span class="math inline">\(((f^*_*)^{\prime})^{-1}\)</span> is well-defined. Furthermore, let <span class="math inline">\(\mu,\nu\in B^2(\lambda)\)</span> with <span class="math inline">\(p_\mu(x):= \frac{{\mathrm{d}}\mu}{{\mathrm{d}}\lambda}(x) ,\, p_\nu(x):=\frac{{\mathrm{d}}\nu}{{\mathrm{d}}\lambda}(x)\)</span> . Then, <span class="math inline">\(\tilde T(x) := f^\prime \left(\frac{p_\mu(x)}{p_\nu(x)}\right)\)</span> is an optimizer for <span class="math display">\[\begin{equation}
+    \sup_{T\in C(M^*)}\bigg\{\left({\mathbb{E}}_\mu(T)- {\mathbb{E}}_\nu(f^*_*\circ T)\right)\bigg\} +
+    \inf_{T\in C(N^*)}\bigg\{({\mathbb{E}}_\mu(T)- {\mathbb{E}}_\nu(f^*_*\circ T))\bigg\}.\label{eq:supE_infE}
+   % \sup_{T\in\cT}\left\{\bE_\mu(T) - \bE_\nu(f^*_*\circ T) \right\}.\label{eq:supE}
+\end{equation}\]</span> Here, <span class="math inline">\(C(M^*)\)</span> (<span class="math inline">\(C(N^*)\)</span>) denotes the set of continuous functions <span class="math inline">\(T:\Omega\to \mathrm{dom}(f^*_*)\)</span> such that <span class="math inline">\(f^*_* \circ T\)</span> is convex (concave).</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section id="references" class="title-slide slide level1 smaller scrollable">
+<h1>References</h1>
 <div class="quarto-auto-generated-content">
 <p><img src="pictures/Logos.svg" class="slide-logo"></p>
 <div class="footer footer-default">
