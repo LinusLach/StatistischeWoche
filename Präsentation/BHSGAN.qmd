@@ -51,7 +51,7 @@ format:
 
 :::{style="font-size:24pt;"}
 
-Quantify dissimilarity between two probability measures $\mu$ and $\nu$ that are absolutely continuous w.r.t to some $\sigma$-finite base measure $\lambda$.^[ $\mu$ is absolutely continuous w.r.t. $\lambda$ if every $\mu$ nullset is a $\lambda$ nullset and vice versa]
+Quantify dissimilarity between two probability measures $\mu$ and $\nu$ that are absolutely continuous w.r.t to some $\sigma$-finite base measure $\lambda$.^[ $\mu$ is absolutely continuous w.r.t. $\lambda$ if every $\mu$ nullset is a $\lambda$ nullset]
 
 $$
   D_{f}(\mu,\nu) = \int_{\mathbb{R}}p_\nu(x)f\left(\frac{p_\mu(x)}{p_\nu(x)}\right)\lambda(\mathrm{d}x).
